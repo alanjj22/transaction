@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <h4>MySql</h4>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-4">
+                <div class="card">
+                    <div class="avatar-ctn">
+                        <img src="/avatar.jpg" alt="profile pic" class="avatar">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{user.name}}</h5>
+                        <p class="carg-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut modi vitae illum, omnis labore eveni</p>
+                        <a href="#" class="btn btn-primary">{{user.email}}</a>
+                    </div>
+                </div>
+            </div>
+                
+            <div class="col-8">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Profile page
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Welcome</h5>
+                        <p class="card-text">this enthino bla blaa blaa</p>
+                        <a href="#" class="btn btn-primary">Click for something</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+</body>
+</html>

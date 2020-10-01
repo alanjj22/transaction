@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const { promisify} = require('util');
 
 
 const db = mysql.createConnection({
@@ -80,11 +81,43 @@ exports.login = async(req, res) => {
                     httpOnly: true
                 }
                 res.cookie('jwt',token, cookieoptions );
-                res.status(200).redirect('/register');
+                res.status(200).redirect('/');
             }
         } )
 
     } catch (error) {
         console.log(error);
     }
+}
+
+
+exports.isLoggedin = async (req, res, next) => {
+    if(req.cookies.jwt){
+        try {
+            const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
+            console.log(decoded);
+
+            db.query('SELECT * FROM users WHERE id = ?',[ decoded.id ], (error, result) =>{
+                if(!result){
+                    return next();
+                }
+                req.user = result[0];
+                return next();
+            })
+        } catch (error) {
+            console.log(error);
+            return next();
+        }
+        }
+        else{
+            next();
+    }
+}
+
+exports.logout = async (req, res) => {
+        res.cookie('jwt', 'logout', {
+        expires: new Date(Date.now() + 2*1000),
+        httpOnly: true
+    });
+    res.status(200).redirect('/');
 }
