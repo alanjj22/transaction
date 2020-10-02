@@ -27,3 +27,21 @@ nav li a:hover{
     color: rgb(189, 204, 49);
     text-decoration: none;
 }
+
+
+.trans-list{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.trans-items{
+    list-style: none;
+    background-color: rgb(221, 68, 68);
+}
+
+.trans-items a{
+    color: rgb(247, 239, 239);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 8px;
+}

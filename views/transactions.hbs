@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <h4>MySql</h4>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/transactions">Transactions</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                New Transaction
+            </div>
+                <div class="card-body">
+                        <form action="/auth/transactions" method="POST">
+                            <div class="form-group">
+                                <label for="sender">sender id</label>
+                                <input type="text" class="form-control" id="sender" name="sender">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="recieved">recipient id</label>
+                                <input type="text" class="form-control" id="recieved" name="recieved">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="amount">Enter the amount</label>
+                                <input type="text" class="form-control" id="amount" name="amount">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                </div>
+        </div>
+        {{#if message }}
+            <h4 class="alert alert-danger mt-4">{{ message }}</h4>
+        {{/if}}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+</body>
+</html>

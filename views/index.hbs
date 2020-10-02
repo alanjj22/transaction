@@ -12,8 +12,9 @@
         <h4>MySql</h4>
         <ul>
             <li><a href="/">Home</a></li>
-            {{#if user}}
+            {{#if user }}
             <li><a href="/profile">Profile</a></li>
+            <li><a href="/transactions">Transactions</a></li>
             <li><a href="/auth/logout">Logout</a></li>
             {{else}}
             <li><a href="/login">Login</a></li>
@@ -22,9 +23,29 @@
         </ul>
     </nav>
     <div class="container mt-4">
-        <div class="jumbotron">
-            <h1 class="display-4">WELCOME TO TRANSACTIONS</h1>
-        </div>
+        {{#if user }}
+        {{#if send}}
+        </div>You Send :{{send}}</div><br>
+        {{else}}
+        </div>You Send :0</div><br>
+        {{/if}}
+        {{#if received}}
+        </div>You Recived :{{received}}</div><br>
+        {{else}}
+        </div>You Recived :0</div><br>
+        {{/if}}
+
+        {{#if total}}
+        </div>Total :{{total}}</div><br>
+        {{else}}
+        </div>Total :0</div><br>
+        {{/if}}
+        
+        {{else}}
+            <div class="jumbotron">
+                <h1 class="display-4">WELCOME TO TRANSACTIONS</h1>
+            </div>
+        {{/if}}
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

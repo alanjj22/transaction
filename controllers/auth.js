@@ -102,8 +102,25 @@ exports.isLoggedin = async (req, res, next) => {
                     return next();
                 }
                 req.user = result[0];
-                return next();
-            })
+                db.query('SELECT SUM(amount) AS received FROM transactions WHERE received = ?',[ decoded.id ], (error, result) =>{
+                    if(!result){
+                        return next();
+                    }
+                    req.received = result[0].received;
+                    console.log(req.received);
+                    db.query('SELECT SUM(amount) AS send FROM transactions WHERE send = ?',[ decoded.id ], (error, result) =>{
+                        if(!result){
+                            return next();
+                        }
+                        req.send = result[0].send;
+                        req.total = req.send - req.received;
+                        console.log(req.total);
+                        console.log(req.send);
+                        return next();
+                    });
+                });  
+            }); 
+            
         } catch (error) {
             console.log(error);
             return next();
@@ -121,3 +138,20 @@ exports.logout = async (req, res) => {
     });
     res.status(200).redirect('/');
 }
+
+exports.transactions = (req,res) => {
+    console.log(req.body);
+    
+    const { sender, recieved , amount } = req.body;
+
+            db.query('INSERT INTO transactions SET ?', {send: sender, received: recieved, amount: amount}, (error,result) => {
+                if(error){
+                    console.log(error);
+                } else {
+                    console.log(result);
+                    return res.render('transactions',{
+                        message: 'Transaction successfull'
+                    });
+                }
+            });
+};
